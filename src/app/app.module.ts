@@ -3,16 +3,62 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { BaseService } from './services/base.service';
+import { AuthService } from './services/auth-service/auth.service';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { AuthInterceptorService } from './services/interceptors/auth-interceptor.service';
+import { NavbarComponent } from './shared/navbar/navbar.component';
+import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './pages/login/login.component';
+import { WebModule } from './pages/web/web.module';
+
+export enum Languages {
+  EN = 'EN',
+  // RO = 'RO',
+  // CH = 'CH'
+}
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NavbarComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    HttpClientModule,
+    WebModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    StoreDevtoolsModule.instrument({
+      maxAge: 10,
+      // logOnly: !env.prod
+    }),
+    TranslateModule.forRoot({
+      defaultLanguage: Languages.EN
+    })
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    BaseService,
+    AuthService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+    }
+  ],
+  bootstrap: [AppComponent],
+  exports: [
+    TranslateModule,
+    RouterModule
+  ]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(private translateService: TranslateService){
+    this.translateService.addLangs([Languages.EN]);
+    this.translateService.setDefaultLang(Languages.EN);
+  }
+}
