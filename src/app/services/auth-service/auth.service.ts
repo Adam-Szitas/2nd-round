@@ -1,21 +1,18 @@
 import { Injectable } from "@angular/core";
 import { BaseService } from "../base.service";
-import { HttpClient } from '@angular/common/http'
-import { catchError } from "rxjs";
-import { Router } from "@angular/router";
 import { UserFacadeService } from "../facade/user-facade.service";
-
-const AUTH_TOKEN = 'auth-token';
+import { Observable } from 'rxjs';
 
 @Injectable()
-export class AuthService extends BaseService{
+export class AuthService extends BaseService {
+  //TODO use component container and Push (ngrx pipe) to get data from facade
 
-  constructor(private httpClient: HttpClient, private router: Router, private userFacade: UserFacadeService){
+  public isUserLoggedIn$: Observable<string | null> = this.userFacade.userData.userCredentials.userToken$;
+
+  constructor(private userFacade: UserFacadeService){
     super();
   }
 
-  //TODO use component container and Push (ngrx pipe) to get data from facade
-  public isUserLoggedIn: boolean = !!this.userFacade.userData.userCredentials.userToken;
 
   public login(loginForm: {userName: string; password: string}): void{
     // const data: {}
@@ -24,11 +21,10 @@ export class AuthService extends BaseService{
     // ).subscribe({
     //   next: (response: LoginResponse) => {
     //     localStorage.setItem(AUTH_TOKEN, response.token);
-    //     this.router.navigateTo(['web/dashboard']);
+    //     this.router.navigateByUrl(['web/dashboard']);
     //   }
     // })
-
-    localStorage.setItem(AUTH_TOKEN, 'Logged In');
+    this.userFacade.userData.userCredentials.setCredentials({userName: loginForm.userName, token: 'Token'})
   }
 
   public logout(): void{
@@ -37,11 +33,11 @@ export class AuthService extends BaseService{
     // ).subscribe({
     //   next: (response: LogoutResponse) => {
     //     localStorage.removeItem(AUTH_TOKEN);
-    //     this.router.navigateTo(['']);
+    //     this.router.navigateByUrl(['']);
     //   }
     // })
 
-    localStorage.removeItem(AUTH_TOKEN);
+    this.userFacade.userData.userCredentials.resetCredentials();
   }
 
   public getAccessToken(): string {

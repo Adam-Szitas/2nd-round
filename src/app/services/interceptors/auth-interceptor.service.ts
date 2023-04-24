@@ -6,7 +6,8 @@ import { AuthService } from "../auth-service/auth.service";
 @Injectable({
   providedIn: 'root',
 })
-export class AuthInterceptorService implements HttpInterceptor {
+export class
+AuthInterceptorService implements HttpInterceptor {
   private requestCount = 0;
 
   //TODO ERROR SERVICE

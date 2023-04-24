@@ -9,16 +9,16 @@ const routes: Routes = [
     component: LoginComponent
   },
   //TODO SOLVE CIRCULAR DEPENDENCY
-  // {
-  //   path: 'web',
-  //   canActivate: [RouteGuardService],
-  //   children: [
-  //     {
-  //       path: 'dashboard',
-  //       loadChildren: () => import('./pages/web/web.module').then((_) => _.WebModule)
-  //     }
-  //   ]
-  // },
+  {
+    path: 'web',
+    canActivate: [RouteGuardService],
+    children: [
+      {
+        path: 'dashboard',
+        loadChildren: () => import('./pages/web/web.module').then((_) => _.WebModule)
+      }
+    ]
+  },
   // {
     // path: '**',
     // component: PageNotFoundComponent   //TODO IMPLEMENT

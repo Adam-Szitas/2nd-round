@@ -7,6 +7,6 @@ const getUserState = createSelector(state, (state: State): UserState => state[US
 
 const getUserToken = createSelector(getUserState, (userState: UserState): string | null => userState.token);
 
-export const userCredentialSelectors = {
+export const UserCredentialSelectors = {
   getUserToken
 }

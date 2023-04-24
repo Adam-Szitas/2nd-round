@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from "@angular/core";
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from "@angular/core";
 
 
 @Component({
@@ -8,5 +8,13 @@ import { ChangeDetectionStrategy, Component } from "@angular/core";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CardComponent{
+  @Input()
+  public details!: any;
 
+  @Output()
+  public buttonClicked = new EventEmitter<any>();
+
+  public click(): void{
+    this.buttonClicked.emit();
+  }
 }

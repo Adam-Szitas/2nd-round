@@ -1,0 +1,54 @@
+div.container{
+  display: flex;
+  justify-content: center;
+
+  & > div.card{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    width: 300px !important;
+    background-color: #f5f5f5;
+    border: 1px solid grey;
+    padding: 20px;
+
+    & > div {
+      margin: 5px 0;
+    }
+    & > div.price{
+      font-size: 50px;
+      font-weight: bold;
+    }
+    & > div.label {
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    & > div.validity, div.email {
+      font-size: 12px;
+      & span.light {
+        color: grey;
+      }
+      margin-bottom: 20px;
+    }
+
+    & > div.button{
+      width: 100%;
+      & button {
+        text-transform: capitalize;
+        border: 0;
+        background-color: #fac314;
+        width: 100%;
+        padding: 5px 15px;
+        font-weight: bold;
+        font-size: 18px;
+        &:hover{
+          background-color: hsl(46, 84%, 42%);
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

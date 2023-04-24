@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="card">
+    <div class="price">€ {{ details.price }}</div>
+    <div class="label">{{ details.label }}</div>
+    <div class="validity"><span class="light">Valid for: </span>{{ details.validity }}</div>
+    <div class="description">{{ details.description }}<b>{{ details.email }}</b>!</div>
+    <div class="button">
+      <button type="button" (click)="click()">{{ details.buttonTitle }}</button>
+    </div>
+  </div>
+</div>

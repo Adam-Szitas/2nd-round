@@ -14,6 +14,8 @@ import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './pages/login/login.component';
 import { WebModule } from './pages/web/web.module';
+import { StoreModule, StoreRootModule } from '@ngrx/store'
+import { PushModule } from '@ngrx/component';
 
 export enum Languages {
   EN = 'EN',
@@ -33,9 +35,12 @@ export enum Languages {
     WebModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    StoreRootModule,
+    PushModule,
+    StoreModule.forRoot({}),
     StoreDevtoolsModule.instrument({
-      maxAge: 10,
-      // logOnly: !env.prod
+      maxAge: 25,
+      logOnly: false
     }),
     TranslateModule.forRoot({
       defaultLanguage: Languages.EN
@@ -53,7 +58,6 @@ export enum Languages {
   bootstrap: [AppComponent],
   exports: [
     TranslateModule,
-    RouterModule
   ]
 })
 export class AppModule {

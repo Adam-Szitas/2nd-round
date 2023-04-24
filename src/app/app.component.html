@@ -1,1 +1,3 @@
-<app-login></app-login>
+<app-navbar *ngIf="!! (isUserLoggedIn$ | ngrxPush)"></app-navbar>
+<app-login *ngIf="! (isUserLoggedIn$ | ngrxPush)"></app-login>
+<app-dashboard *ngIf="!! (isUserLoggedIn$ | ngrxPush)"><app-dashboard>

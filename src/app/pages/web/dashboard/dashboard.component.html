@@ -1,0 +1,21 @@
+<div class="container">
+  <ui-card [details]="cardDetails" (buttonClicked)="buttonClicked()"></ui-card>
+  <ng-container *ngIf="venues?.length">
+    <div class="modal">
+      <div class="inner">
+        <h2>Find a location</h2>
+        <table>
+          <tr class="head"><th class="col-8">Name & address</th><th class="col-4">Opening hours</th></tr>
+          <tr *ngFor="let venue of venues">
+            <td class="col-8">
+              <div class="name"><b>{{ venue.name }}</b></div>
+              <div class="address">{{ venue.address }}</div>
+              <div class="link">{{ venue.link }}</div>
+            </td>
+            <td class="col-4">{{ venue.hours }}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </ng-container>
+</div>

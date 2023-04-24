@@ -9,10 +9,11 @@ export class RouteGuardService implements CanActivate{
   constructor(private authService: AuthService){}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    return this.isUserLoggedIn();
+    // return this.isUserLoggedIn();
+    return true;
   }
 
-  private isUserLoggedIn(): boolean {
-    return this.authService.isUserLoggedIn;
-  }
+  // private isUserLoggedIn(): boolean {
+  //   return this.authService.isUserLoggedIn$;
+  // }
 }

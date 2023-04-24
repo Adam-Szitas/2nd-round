@@ -27,7 +27,6 @@ export class LoginComponent implements OnInit{
   }
 
   public submit(): void{
-    // TODO ADD REAL VALIDATION
     if(this.loginForm.valid){
       const data = this.loginForm.getRawValue();
       this.authService.login(data);

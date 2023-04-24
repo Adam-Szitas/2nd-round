@@ -1,0 +1,11 @@
+div.container{
+  height: 50px;
+  background-color: lightblue;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+
+  & button{
+    justify-content: flex-end;
+  }
+}
